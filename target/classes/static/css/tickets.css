@@ -1,0 +1,138 @@
+.tickets_list {
+    margin-top: 1.75vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75vw;
+}
+
+.ticket{
+    margin: 1.75vw 0.75vw 0.75vw 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.75vw;
+    background: white;
+    border: 3px solid black;
+    border-radius: 30px;
+}
+
+.ticket_buy_redirect {
+    padding-top: 1.75vw;
+    margin-bottom: -1vw;
+    display: flex;
+    justify-content: center;
+}
+
+.ticket_info > p, .ticket_info > a {
+    margin-top: 1vw;
+}
+
+.ticket_buy{
+    padding: 0.5vw 1.5vw;
+    border: 3px solid black;
+    border-radius: 15px;
+    text-transform: uppercase;
+    color:#412caf;
+    text-decoration: none;
+}
+
+.ticket_buy:visited {
+    color:#412caf;
+}
+
+.ticket_info > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1vw;
+}
+
+.ticket_info{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    font-size: 2vw;
+}
+
+h1 {
+    font-size: 3vw;
+    text-transform: uppercase;
+    margin-top: 10vw;
+}
+
+.filter_info{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    font-size: 1.5vw;
+}
+
+.filter_info > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1vw;
+}
+
+.filter_button{
+    padding: 0.5vw 1.5vw;
+    font-size: 1.5vw;
+    border: 3px solid black;
+    border-radius: 15px;
+    text-transform: uppercase;
+    color:#412caf;
+    text-decoration: none;
+}
+
+.filter_button_redirect {
+    padding-top: 1.75vw;
+    margin-bottom: -1vw;
+    display: flex;
+    justify-content: center;
+}
+
+.filter_button_redirect > a {
+    padding: 0.5vw 1.5vw;
+    border: 3px solid black;
+    border-radius: 15px;
+    text-transform: uppercase;
+    color:#412caf;
+    text-decoration: none;
+}
+
+.filter_name {
+    padding-top: 1vw;
+    padding-bottom: 0.25vw;
+    font-size: 1.25vw;
+}
+
+.filter_name3 {
+    padding-top: 1vw;
+    padding-bottom: 0.25vw;
+    font-size: 1.25vw;
+    margin-top: -3.5vw;
+}
+
+.filter_input {
+    width: 17.5vw;
+    height: 1.75vw;
+}
+
+.filter_button_redirect2 {
+    padding-top: 1.75vw;
+    margin-bottom: -1vw;
+    display: flex;
+    justify-content: center;
+    margin-left: 20vw;
+    margin-top: -1vw;
+}
+
+.filter_button:hover {
+    cursor: pointer;
+}
