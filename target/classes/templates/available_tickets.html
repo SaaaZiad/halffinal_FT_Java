@@ -26,8 +26,14 @@
       <input type="text" name="keywordDepTime" id="keywordDepTime" size="50" th:value="${keywordDepTime}" class="filter_input"/>
       <p th:if="${error}" th:text="${error}" class="error"></p>
       &nbsp;
-      <p class="filter_name">Вид транспорта:<br>(Авиа, ЖД, Автобус)</p>
-      <input type="text" name="keywordTransport" id="keywordTransport" size="50" th:value="${keywordTransport}" class="filter_input"/>
+      <p class="filter_name">Вид транспорта:</p>
+      <select id="keywordTransport" name="keywordTransport" class="filter_input">
+        <option value="">Любой</option>
+        <option value="Авиа">Авиа</option>
+        <option value="ЖД">ЖД</option>
+        <option value="Автобус">Автобус</option>
+      </select>
+      <!--<input type="text" name="keywordTransport" id="keywordTransport" size="50" th:value="${keywordTransport}" class="filter_input"/>-->
       <p th:if="${error}" th:text="${error}" class="error"></p>
       &nbsp;
     </form>

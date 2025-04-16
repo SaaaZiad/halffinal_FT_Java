@@ -40,30 +40,6 @@ public class TicketService {
     return ticketRepo.findAllAvailable();
   }
 
-  public List<Ticket> findByDeparture(String keyword) {
-    if (keyword != null) {
-      return ticketRepo.findByDeparture(keyword);
-    }
-    return ticketRepo.findAllAvailable();
-  }
-  public List<Ticket> findByDestination(String keyword) {
-    if (keyword != null) {
-      return ticketRepo.findByDestination(keyword);
-    }
-    return ticketRepo.findAllAvailable();
-  }
-  public List<Ticket> findByDepTime(String keyword) {
-    if (keyword != null) {
-      return ticketRepo.findByDepTime(keyword);
-    }
-    return ticketRepo.findAllAvailable();
-  }
-  public List<Ticket> findByTransport(String keyword) {
-    if (keyword != null) {
-      return ticketRepo.findByTransport(keyword);
-    }
-    return ticketRepo.findAllAvailable();
-  }
   public List<Ticket> getAllItemsSorted(String sortBy, String direction) {
     Sort sort = direction.equalsIgnoreCase("asc") ?
             Sort.by(sortBy).ascending() :
