@@ -1,0 +1,21 @@
+#userDetails {
+    display: flex;
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color:lightgra;
+    flex-direction: column;
+    justify-content: center;
+}
+#userDetails > p {
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    font-family: "HoloLens MDL2 Assets", monospace;
+    font-size: 1.25vw;
+}
+
+section {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

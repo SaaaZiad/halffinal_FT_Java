@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить билет</title>
+    <link href="/static/css/default_styles.css" rel="stylesheet">
+    <link href="/static/css/form.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<form th:action="@{/admin/available_tickets/create}" th:object="${createTicketDTO}" th:method="post"
+      enctype="multipart/form-data" class="form_admin" id="dateForm">
+    <div>
+        <label for="departure">Пункт отправления:</label>
+        <input type="text" id="departure" name="departure" th:field="*{departure}"/>
+        <p th:if="${#fields.hasErrors('departure')}" class="error">Пункт отправления не должен быть пустым</p>
+    </div>
+    <div>
+        <label for="destination">Пункт прибытия:</label>
+        <input type="text" id="destination" name="destination" th:field="*{destination}"/>
+        <p th:if="${#fields.hasErrors('destination')}" class="error">Пункт прибытия не должен быть пустым</p>
+    </div>
+    <div>
+        <label for="manualDepTimeInput">Время отправления (формат - 31.12.2025 23:59):</label>
+        <input type="text" id="manualDepTimeInput" th:field="*{strDepTime}"
+               placeholder="ДД.ММ.ГГГГ.ЧЧ.мм" maxlength="16">
+        <div class="error-message" id="DepTimeError">Пожалуйста, введите дату в формате 31.12.2025 23:59</div>
+    </div>
+    <div>
+        <label for="manualArrTimeInput">Время прибытия (формат - 31.12.2025 23:59):</label>
+        <input type="text" id="manualArrTimeInput" th:field="*{strArrTime}"
+               placeholder="ДД.ММ.ГГГГ.ЧЧ.мм" maxlength="16">
+        <div class="error-message" id="ArrTimeError">Пожалуйста, введите дату в формате 31.12.2025 23:59</div>
+    </div>
+    <div>
+        <label for="description">Описание билета:</label>
+        <input type="text" id="description" name="description" th:field="*{description}"/>
+        <p th:if="${#fields.hasErrors('description')}" class="error">Описание не должно быть пустым</p>
+    </div>
+    <div>
+        <label for="price">Цена за билет</label>
+        <input id="price" name="price" th:field="*{price}"/>
+        <p th:if="${#fields.hasErrors('price')}" class="error">Неправильное значение цены</p>
+    </div>
+    <div>
+        <label for="amount">Количество билетов</label>
+        <input id="amount" name="amount" th:field="*{amount}"/>
+        <p th:if="${#fields.hasErrors('amount')}" class="error">Количество должно быть числом</p>
+    </div>
+    <div>
+        <label for="transportType">Вид транспорта</label>
+        <input id="transportType" name="transportType" th:field="*{transportType}"/>
+        <p th:if="${#fields.hasErrors('transportType')}" class="error">Вид транспорта не может быть пустым</p>
+    </div>
+    <div class="redir_wrap">
+        <button type="submit">Добавить билет</button>
+    </div>
+</form>
+<script>
+    document.getElementById('dateForm').addEventListener('submit', function(e) {
+        const arrTimeInput = document.getElementById('manualArrTimeInput').value;
+        const depTimeInput = document.getElementById('manualDepTimeInput').value;
+        if (arrTimeInput && !isValidDateFormat(arrTimeInput) && depTimeInput && !isValidDateFormat(depTimeInput)) {
+            document.getElementById('dateError').style.display = 'block';
+        } else {
+            document.getElementById('dateError').style.display = 'none';
+        }
+    });
+
+    function isValidDateFormat(dateString) {
+        // Проверка на формат ДД.ММ.ГГГГ ЧЧ:ММ
+        const regex = /^(\d{2})\.(\d{2})\.(\d{4}) (\d{2}):(\d{2})$/;
+        if (!regex.test(dateString)) return false;
+
+        const parts = dateString.split(' ');
+        const dateParts = parts[0].split('.');
+        const timeParts = parts[1].split(':');
+
+        const day = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10);
+        const year = parseInt(dateParts[2], 10);
+        const hour = parseInt(timeParts[0], 10);
+        const minute = parseInt(timeParts[1], 10);
+
+        // Проверка валидности месяца
+        if (month < 1 || month > 12) return false;
+
+        // Проверка валидности дня
+        const daysInMonth = new Date(year, month, 0).getDate();
+        if (day < 1 || day > daysInMonth) return false;
+
+        // Проверка валидности времени
+        if (hour < 0 || hour > 23 || minute < 0 || minute > 59) return false;
+
+        return true;
+    }
+</script>
+</body>
+</html>

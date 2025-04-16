@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/css/default_styles.css" rel="stylesheet">
+    <link href="/static/css/form.css" rel="stylesheet">
+    <title>Купить</title>
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<form th:action="@{/orders/cancel_booking/{id}(id=${orderId})}"
+      th:method="post"
+      class="form_main">
+    <div>
+        <h1>Вы уверены, что хотите отменить бронирование?</h1>
+    </div>
+    <div class="redir_wrap">
+        <button type="submit">Отменить</button>
+    </div>
+</form>
+</body>
+</html>

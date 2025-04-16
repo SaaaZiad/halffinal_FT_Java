@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Доступные товары</title>
+  <link href="/static/css/default_styles.css" rel="stylesheet">
+  <link href="/static/css/tickets.css" rel="stylesheet">
+</head>
+<body>
+  <div th:replace="/header :: header"></div>
+  <h1>Доступные билеты</h1>
+  <div>
+    <form th:action="@{/tickets}">
+      <p class="filter_name">Город отправления:</p>
+      <input type="text" name="keywordDep" id="keywordDep" th:value="${keywordDep}" class="filter_input"/>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
+      &nbsp;
+      <p class="filter_name">Город прибытия:</p>
+      <input type="text" name="keywordDest" id="keywordDest" size="50" th:value="${keywordDest}" class="filter_input"/>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
+      &nbsp;
+      <div class="filter_button_redirect2">
+        <input type="submit" value="Искать" class="filter_button"/>
+      </div>
+      &nbsp;
+      <p class="filter_name3">Время отправления:<br>(формат - 01.01.1999 23:59)</p>
+      <input type="text" name="keywordDepTime" id="keywordDepTime" size="50" th:value="${keywordDepTime}" class="filter_input"/>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
+      &nbsp;
+      <p class="filter_name">Вид транспорта:<br>(Авиа, ЖД, Автобус)</p>
+      <input type="text" name="keywordTransport" id="keywordTransport" size="50" th:value="${keywordTransport}" class="filter_input"/>
+      <p th:if="${error}" th:text="${error}" class="error"></p>
+      &nbsp;
+    </form>
+
+  </div>
+  <div class="ticket">
+    <div class="filter_info">
+      <h3>Сортировка:</h3>
+      <div class="filter_button_redirect">
+        <a th:href="@{/tickets(sortBy='departureTime', direction=${sortBy == 'departureTime' && direction == 'asc' ? 'desc' : 'asc'})}"
+           th:class="${sortBy == 'departureTime'} ? 'sort-btn active' : 'sort-btn'" class="filter_button">
+          По времени
+          <span th:if="${sortBy == 'departureTime' && direction == 'asc'}">↑</span>
+          <span th:if="${sortBy == 'departureTime' && direction == 'desc'}">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="tickets_list">
+    <div th:each="ticket: ${tickets}" class="ticket">
+      <div class="ticket_info">
+        <div th:text="${ticket.getDeparture() + ' - ' + ticket.getDestination()}" class="ticket_destination"></div>
+        <p th:text="'Время отправления:'+${ticket.getStrDepTime()}" class="ticket_amount"></p>
+        <p th:text="'Время прибытия:'+${ticket.getStrArrTime()}" class="ticket_amount"></p>
+        <p th:text="'Вид транспорта:'+${ticket.getTransportType()}" class="ticket_amount"></p>
+        <p th:text="'Подробности:'+${ticket.getDescription()}" class="ticket_description"></p>
+        <p th:text="'Цена:'+${ticket.getPrice()}" class="ticket_price"></p>
+        <p th:text="'Осталось билетов:'+${ticket.getAmount()}" class="ticket_amount"></p>
+        <div class="ticket_buy_redirect">
+          <a th:href="@{/tickets/buy_tickets/{id}(id=${ticket.getTicketId()})}"
+             class="ticket_buy">Купить</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
